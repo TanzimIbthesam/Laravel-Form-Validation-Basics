@@ -23,7 +23,7 @@ class ImageUploadController extends Controller
 
     }
     public function uploadimage(ImageUploadValidation $request){
-        $data=$request->validate();
+        //$data=$request->validate();
         // $data=request()->validate([
         //     'name'=>'required|min:5',
         //     'upload_image'=>'image|required|max:2000',

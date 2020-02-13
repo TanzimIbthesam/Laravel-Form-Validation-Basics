@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\ImageUpload;
+use App\Http\Requests\ImageUploadValidation;
+
 use Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Carbon as SupportCarbon;
+
 
 class ImageUploadController extends Controller
 {
@@ -19,12 +22,13 @@ class ImageUploadController extends Controller
         return view('imageupload.index')->with('images',$images);
 
     }
-    public function uploadimage(Request $request){
-        $data=request()->validate([
-            'name'=>'required|min:5',
-            'upload_image'=>'image|required|max:2000',
-            // 'upload_image'=>'required|max:2000|mimes:doc,docx,pdf',
-        ]);
+    public function uploadimage(ImageUploadValidation $request){
+        $data=$request->validate();
+        // $data=request()->validate([
+        //     'name'=>'required|min:5',
+        //     'upload_image'=>'image|required|max:2000',
+        //     // 'upload_image'=>'required|max:2000|mimes:doc,docx,pdf',
+        // ]);
         // $image= new ImageUpload;
         // $image->name=$request->name;
         // $image->upload_image=$request->upload_image;
@@ -132,4 +136,5 @@ class ImageUploadController extends Controller
         return redirect('/imageupload');
     }
 }
+
 
